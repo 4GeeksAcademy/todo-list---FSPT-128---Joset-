@@ -9,6 +9,7 @@ const Home = () => {
 	};
 
 	const agregarItem = () => {
+		console.log("Has agregado:", producto);
 		setListaCompra([...listaCompra, producto])
 		setProducto ("")
 	}
