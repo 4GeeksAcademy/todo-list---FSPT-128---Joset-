@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
 const Home = () => {
-	const [inputValue, setInputValue] = useState("");
-	const [todos, setTodos] = useState([])
+	const [producto, setProducto] = useState("");
+	const [listaCompra, setListaCompra] = useState([])
 
-	const handleOnChange = (e) => {
-		setInputValue(e.target.value);
+	const actualizarInput = (e) => {
+		setProducto(e.target.value);
 	};
 
-	const handleOnClick = () => {
-		setTodos([...todos, inputValue])
-		setInputValue ("")
+	const agregarItem = () => {
+		setListaCompra([...listaCompra, producto])
+		setProducto ("")
 	}
 
-	const handleDelete = (index) =>{
-		const updateTodos = todos.filter((todos, i) => i !== index )
-		setTodos(updateTodos)
+	const eliminarItem = (index) =>{
+		const updateListaCompra = listaCompra.filter((item, i) => i !== index )
+		setListaCompra(updateListaCompra)
 	}
 
 	return (
@@ -24,21 +24,21 @@ const Home = () => {
 			<div className="container_input">
 				<input
 					type="text"
-					value={inputValue}
-					onChange={handleOnChange}
-					 onKeyDown={(e) => e.key === "Enter" && handleOnClick()} 
+					value={producto}
+					onChange={actualizarInput}
+					 onKeyDown={(e) => e.key === "Enter" && agregarItem()} 
 					placeholder="¿Qué te falta?..."
 				/>
-				<button className='btn-add' onClick={handleOnClick}>Agregar</button>
+				<button className='btn-add' onClick={agregarItem}>Agregar</button>
 			</div>
 			<ul>
 				{
-					todos.length > 0 ? todos.map((todo, index) => {
+					listaCompra.length > 0 ? listaCompra.map((item, index) => {
 						return (
-							<li key={index} > {todo} 
+							<li key={index} > {item} 
 							<button 
 							className='btn-delete'
-							onClick={()=> {handleDelete(index)}}>X</button></li>
+							onClick={()=> {eliminarItem(index)}}>X</button></li>
 							
 						)
 					})
